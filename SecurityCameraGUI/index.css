@@ -1,0 +1,55 @@
+html, body{
+    background-color: rgb(255, 255, 255);
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+#container{
+    width: 100%;
+    height: 75%;
+    margin: auto;
+    margin-top: 50px;
+    
+}
+.btn :nth-child(){
+    background-color: rgb(255, 255, 113)
+}
+.card-deck img{
+    width: 20rem;
+    height: 16rem;
+    margin: auto;
+}
+
+.card-top{
+    justify-content: center;
+    text-align: center;
+}
+#banner{
+    height: 25%;
+    width: 100%;
+
+}
+header {
+    height: 70px;
+    background-color: rgb(255, 255, 113);
+    text-align: center;
+    margin: auto;
+    font: "Times New Roman";
+    width: 98%;
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 100%;
+}
+
+footer {
+    background-color: rgb(255, 255, 113);
+    height: 35px;
+    text-align: right;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0;
+}

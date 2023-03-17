@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script>
+        <script src="https://unpkg.com/vue@next"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="index.css">
+        
+        <title>Security Camera</title>
+        <!-- <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+        
+            td,
+            th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+        
+            tr:nth-child(even) {
+                background-color: lightgrey;
+            }
+        </style> -->
+    </head>
+
+<body id="app">
+    <div id="banner">
+        <header>
+            <h1>Security Camera - Zealand</h1>
+        </header>
+            <h1>Pictures taken</h1>
+            <input placeholder="Date" type="date" v-model="date">
+            <button v-on:click="filterByDate(date)" class="btn btn-warning" style="background-color: rgb(255, 255, 113); color: black; margin: 10px; margin-left:3px">Search date</button> 
+            <button v-on:click="filterByToday()" class="btn btn-warning" style="background-color: rgb(255, 255, 113); color: black;  margin-left:10px">Today</button> 
+            <button v-on:click="getAllPictures()" class="btn btn-warning" style="background-color: rgb(255, 255, 113); color: black; margin-left:3px">All Pictures</button> 
+    </div>
+        <!-- <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>CameraId</th>
+                    <th>PictureId</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Picture</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="data in filteredPictures">
+                    <td>{{data.id}}</td>
+                    <td>{{data.pictureId}}</td>
+                    <td>{{data.name}}</td>
+                    <td>{{data.date}}</td>
+                    <td><img :src="'http://localhost:5203/CameraAPI/Images/' + data.pictureId" alt="Services" class="img-rounded"/></td>
+                    <td> <button v-on:click="deleteButton(data.id)" class="btn btn-warning">Delete</button></td>
+                </tr>
+            </tbody>
+        </table> -->
+
+        <div id="container">
+            <div>
+                <div class="card-deck">
+                    <div class="card m-3" style="min-width: 22rem; height: 23rem;" v-for="picture in filteredPictures">
+                        <div class="card-top"> 
+                            <h5 class="card-title">{{picture.name}}</h5>
+                            <img :src="'http://localhost:5203/CameraAPI/Images/' + picture.pictureId" alt="Services"/> 
+                        </div>
+                        <!-- <img class="card-top" :src="'http://localhost:5203/CameraAPI/Images/' + picture.pictureId" alt="Services"/>  -->
+                        <div class="card-body">
+                            <button v-on:click="deleteButton(picture.id)" class="btn btn-warning" style="text-align: right; margin-right: 20px;">Delete</button>
+        
+                            <p class="card-text" style="margin-top: -50px; margin-left: 1px;     text-align: right;
+                            " >
+                                SnapFromCamera: {{picture.id}} <br> Date: {{picture.date}}
+                            </p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div v-if="filteredPictures < 1">
+                    <h1>No pictures to display. <br> <h4>Please chcek your API connection.</h4></h1>
+                    <div class="card" style="min-width: 60rem; max-width: 69%; height: 70rem;">
+                        <div class="card-top"> 
+                            <h5 class="card-title">No connection to the database!!</h5>
+                            <img :src="'http://localhost:5203/CameraAPI/Images/' + 9999" alt="Services"/> 
+                        </div>
+                        <!-- <img class="card-top" :src="'http://localhost:5203/CameraAPI/Images/' + picture.pictureId" alt="Services"/>  -->
+                        <div class="card-body">        
+                            <!-- <p class="card-text" style="margin-top: -50px; margin-left: 1px;     text-align: center;
+                            " >
+                                We couldn't connect to our API
+                            </p>
+                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy 2022 Semester 3 Computer Science</p>
+        </footer>
+</body>
+<script src="js/index.js"></script>
+
+</html>
